@@ -4,10 +4,12 @@ from src.config import settings
 from src.api.v2.router import api_router
 from src.models.ApiResponse import ApiResponse
 from typing import Dict
+from fastapi_asyncpg import configure_asyncpg
 
 
 app = FastAPI(title=settings.APP_NAME, description="Api to handle Cooloc's backend", docs_url=f"{settings.API_PREFIX}/docs")
 app.include_router(api_router, prefix=settings.API_PREFIX)
+db = configure_asyncpg(app, settings.DB_URL)
 
 @app.exception_handler(Exception)
 async def default_exception_handler(request: Request, e: Exception) -> JSONResponse:
@@ -25,3 +27,7 @@ def read_root() -> ApiResponse[dict]:
             "version": settings.VERSION
         }
     )
+
+@db.on_init
+async def db_init(conn): 
+    await conn.execute("SELECT 1")

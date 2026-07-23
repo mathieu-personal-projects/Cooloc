@@ -19,6 +19,7 @@ And then in the .env paste these values (that you will edit obv) :
 POSTGRES_USER=you
 POSTGRES_PASSWORD=your-pg-passwd
 POSTGRES_DB=cooloc
+POSTGRES_PORT=15432
 PGADMIN_DEFAULT_EMAIL=you@your-mail.com
 PGADMIN_DEFAULT_PASSWORD=your-pgad-passwd
 ```

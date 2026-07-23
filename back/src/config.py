@@ -18,6 +18,15 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    POSTGRES_PORT: str
+    
+    @property
+    def DB_URL(self) -> str:
+        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@localhost:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
