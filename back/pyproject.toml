@@ -1,0 +1,10 @@
+[project]
+name = "back"
+version = "0.2.0"
+description = "Cooloc's backend api"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.139.2",
+    "pydantic-settings>=2.14.2",
+]

@@ -1,8 +1,0 @@
-psycopg2-binary==2.9.9
-python-dotenv
-pytest
-pytest-cov
-coverage
-bcrypt
-pyjwt
-firebase-admin
