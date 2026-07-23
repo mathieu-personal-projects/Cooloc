@@ -1,1 +1,32 @@
-# empty for now
+services:
+  database:
+    image: 'postgres:17'
+    ports:
+      - 15432:5432
+    env_file:
+      - ${PWD}/.docker/.env
+    networks:
+      - postgres-network
+    volumes:
+      - ${PWD}/.docker/db-data/:/var/lib/postgresql/data/
+      - ${PWD}/docs/v2/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 15433:80
+    env_file:
+      - ${PWD}/.docker/.env
+    depends_on:
+      - database
+    networks:
+      - postgres-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+networks: 
+  postgres-network:
+    driver: bridge
+
+volumes:
+  pgadmin-data:
