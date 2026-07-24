@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from datetime import datetime
 
@@ -10,11 +10,11 @@ class UserGlobalRole(Enum):
 
 @dataclass
 class User():
-    email: str = "dummy@dum.com"
     password_hash: str
+    phone_number: str
+    email: str = "dummy@dum.com"
     first_name: str = "Dummy"
     last_name: str = "Dummy"
-    phone_number: str
     global_role: UserGlobalRole = UserGlobalRole.APPLICANT
-    created_at: datetime = datetime.now()
-    updated_at: datetime = datetime.now()
+    created_at: datetime = field(default_factory=datetime.now())
+    updated_at: datetime = field(default_factory=datetime.now())

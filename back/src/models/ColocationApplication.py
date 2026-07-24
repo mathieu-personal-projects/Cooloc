@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import uuid4
 from enum import Enum
 from datetime import datetime
@@ -13,6 +13,6 @@ class ApplicationStatus(Enum):
 class ColocationApplication():
     colocation_id: uuid4
     applicant_id: uuid4
-    status: ApplicationStatus = ApplicationStatus.PENDING
     message: str
-    created_at: datetime = datetime.now()
+    status: ApplicationStatus = ApplicationStatus.PENDING
+    created_at: datetime = field(default_factory=datetime.now())

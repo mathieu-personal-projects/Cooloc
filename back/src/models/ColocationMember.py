@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import uuid4
 from enum import Enum
 from datetime import datetime
@@ -13,4 +13,4 @@ class ColocationMember():
     colocation_id: uuid4
     user_id: uuid4
     role: RoomateRole = RoomateRole.BASIC
-    joined_at: datetime = datetime.now()
+    joined_at: datetime = field(default_factory=datetime.now())

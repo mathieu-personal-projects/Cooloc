@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import uuid4
 from enum import Enum
 from datetime import datetime
@@ -13,9 +13,9 @@ class TaskStatus(Enum):
 class Task():
     colocation_id: uuid4
     assigned_to_id: uuid4
-    title: str = "Dummy Task"
     description: str
+    title: str = "Dummy Task"
     status: TaskStatus = TaskStatus.TODO
-    due_date: datetime = datetime.now()
-    created_at: datetime = datetime.now()
-    updated_at: datetime = datetime.now()
+    due_date: datetime = field(default_factory=datetime.now())
+    created_at: datetime = field(default_factory=datetime.now())
+    updated_at: datetime = field(default_factory=datetime.now())

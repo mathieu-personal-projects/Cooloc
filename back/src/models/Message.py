@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import uuid4
 from datetime import datetime
 
@@ -7,5 +7,5 @@ from datetime import datetime
 class Message():
     colocation_id: uuid4
     sender_id: uuid4
-    content: str = ''
-    created_at: datetime = datetime.now()
+    content: str = 'dummy'
+    created_at: datetime = field(default_factory=datetime.now())
