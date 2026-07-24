@@ -27,6 +27,6 @@ async def get_hello(db: AsyncSession = Depends(get_db)) -> ApiResponse[dict]:
                 statusCode=500,
                 message="Unable to call Hello World and the db",
                 data={
-                    "errorMessage": e
+                    "errorMessage": str(e)
                 }
             )
