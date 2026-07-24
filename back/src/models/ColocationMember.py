@@ -5,12 +5,12 @@ from datetime import datetime
 
 
 class RoomateRole(Enum):
-    'BASIC'
-    'LEAD'
+    BASIC = "BASIC"
+    LEAD = "LEAD"
 
 @dataclass
 class ColocationMember():
     colocation_id: uuid4
     user_id: uuid4
-    role: RoomateRole = 'BASIC'
+    role: RoomateRole = RoomateRole.BASIC
     joined_at: datetime = datetime.now()

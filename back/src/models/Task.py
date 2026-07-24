@@ -5,9 +5,9 @@ from datetime import datetime
 
 
 class TaskStatus(Enum):
-    'TODO'
-    'IN_PROGRESS'
-    'DONE'
+    TODO = "TODO"
+    IN_PROGRESS = "IN_PROGRESS"
+    DONE = "DONE"
 
 @dataclass
 class Task():
@@ -15,7 +15,7 @@ class Task():
     assigned_to_id: uuid4
     title: str = "Dummy Task"
     description: str
-    status: TaskStatus = 'TODO'
+    status: TaskStatus = TaskStatus.TODO
     due_date: datetime = datetime.now()
     created_at: datetime = datetime.now()
     updated_at: datetime = datetime.now()

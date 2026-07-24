@@ -5,14 +5,14 @@ from datetime import datetime
 
 
 class ApplicationStatus(Enum):
-    'PENDING'
-    'ACCEPTED'
-    'REJECTED'
+    PENDING = "PENDING"
+    ACCEPTED = "ACCEPTED"
+    REJECTED = "REJECTED"
 
 @dataclass
 class ColocationApplication():
     colocation_id: uuid4
     applicant_id: uuid4
-    status: ApplicationStatus = 'PENDING'
+    status: ApplicationStatus = ApplicationStatus.PENDING
     message: str
     created_at: datetime = datetime.now()

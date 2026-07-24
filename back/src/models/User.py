@@ -4,9 +4,9 @@ from datetime import datetime
 
 
 class UserGlobalRole(Enum):
-    'APPLICANT'
-    'ROOMMATE'
-    'OWNER'
+    APPLICANT = "APPLICANT"
+    ROOMMATE = "ROOMMATE"
+    OWNER = "OWNER"
 
 @dataclass
 class User():
@@ -15,6 +15,6 @@ class User():
     first_name: str = "Dummy"
     last_name: str = "Dummy"
     phone_number: str
-    global_role: UserGlobalRole = 'APPLICANT'
+    global_role: UserGlobalRole = UserGlobalRole.APPLICANT
     created_at: datetime = datetime.now()
     updated_at: datetime = datetime.now()
