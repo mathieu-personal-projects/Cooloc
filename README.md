@@ -22,6 +22,7 @@ POSTGRES_DB=cooloc
 POSTGRES_PORT=15432
 PGADMIN_DEFAULT_EMAIL=you@your-mail.com
 PGADMIN_DEFAULT_PASSWORD=your-pgad-passwd
+JWT_SIGNATURE=your-jwt-signature
 ```
 
 Once created you can run `docker compose up -d` to start containers.
