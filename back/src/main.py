@@ -13,7 +13,7 @@ app.include_router(api_router, prefix=settings.API_PREFIX)
 async def default_exception_handler(request: Request, e: Exception) -> JSONResponse:
     detail = str(e) if settings.DEBUG else "Internal error occurred."
     
-    return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"statusCode": 500, "message": f"{e.__class__.__name__}", "data": detail})
+    return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"statusCode": 500, "errorMessage": f"{e.__class__.__name__}", "data": detail})
 
 @app.get(settings.API_PREFIX, response_model=ApiResponse[dict])
 def read_root() -> ApiResponse[dict]:
