@@ -8,8 +8,10 @@ dependencies = [
     "asyncpg>=0.31.0",
     "bcrypt>=5.0.0",
     "fastapi[standard]>=0.139.2",
+    "jwt>=1.4.0",
     "psycopg2-binary>=2.9.12",
     "pydantic-settings>=2.14.2",
+    "pyjwt>=2.13.0",
     "sqlalchemy>=2.0.51",
 ]
 

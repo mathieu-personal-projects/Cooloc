@@ -5,6 +5,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ENV_FILE = BASE_DIR / ".docker/.env"
+JWT_ALGO = 'HS256'
 
 class Settings(BaseSettings):
     APP_NAME: str = "Cooloc's API"
@@ -26,6 +27,8 @@ class Settings(BaseSettings):
     @property
     def DB_URL(self) -> str:
         return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@localhost:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+
+    JWT_SIGNATURE: str
 
 @lru_cache
 def get_settings() -> Settings:

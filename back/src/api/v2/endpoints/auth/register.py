@@ -22,7 +22,14 @@ async def register(request: ApiRequest[UserRegisterPayload], db: AsyncSession = 
         )
 
     try:
-        result = await register_user(db=db, payload=request.data)
+        payload_data = request.data.model_copy(update={"csrfToken": request.csrfToken})
+        response = await register_user(db=db, payload=payload_data)
+
+        if isinstance(response, ApiResponse) and response.statusCode != 200:
+            return response
+
+        result = response.data["data"]
+        jwtToken = response.data["jwtToken"]
 
         return ApiResponse(
                 statusCode=200,
@@ -31,8 +38,8 @@ async def register(request: ApiRequest[UserRegisterPayload], db: AsyncSession = 
                     "id": result["id"],
                     "first_name": result["first_name"],
                     "last_name": result["last_name"],
-                    "role": result["role"],
-                    "jwtToken": result["jwtToken"]
+                    "role": result["global_role"],
+                    "jwtToken": jwtToken
                 }
             )
 

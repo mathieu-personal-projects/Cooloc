@@ -16,5 +16,5 @@ class User():
     first_name: str = "Dummy"
     last_name: str = "Dummy"
     global_role: UserGlobalRole = UserGlobalRole.APPLICANT
-    created_at: datetime = field(default_factory=datetime.now())
-    updated_at: datetime = field(default_factory=datetime.now())
+    created_at: datetime = field(default_factory=datetime.now)
+    updated_at: datetime = field(default_factory=datetime.now)
