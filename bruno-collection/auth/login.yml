@@ -26,15 +26,13 @@ runtime:
   scripts:
     - type: after-response
       code: |-
-        const resBody = res.body;
+        const token = res.body?.data?.jwtToken;
 
-        if (resBody && resBody.data && resBody.data.jwtToken) {
-          const token = resBody.data.jwtToken;
-          bru.setEnvVar("JWT", token);
-          
-          console.log("JWT token savec");
+        if (token) {
+          bru.setVar("JWT", token);
+          console.log("JWT saved");
         } else {
-          console.log("cant find jwtToken");
+          console.log("Can't find jwtToken in response");
         }
 
 settings:

@@ -7,6 +7,7 @@ class UserGlobalRole(Enum):
     APPLICANT = "APPLICANT"
     ROOMMATE = "ROOMMATE"
     OWNER = "OWNER"
+    ADMIN = "ADMIN"
 
 @dataclass
 class User():

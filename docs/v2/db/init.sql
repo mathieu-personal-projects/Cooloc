@@ -1,7 +1,8 @@
 CREATE TYPE user_global_role AS ENUM (
     'APPLICANT',
     'ROOMMATE',
-    'OWNER'
+    'OWNER',
+    'ADMIN'
 );
 
 CREATE TYPE roommate_role AS ENUM (

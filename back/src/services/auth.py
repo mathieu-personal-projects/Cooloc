@@ -119,7 +119,8 @@ async def login_user(db: AsyncSession, payload: UserLoginPayload) -> ApiResponse
             data={"errorMessage": "invalid email or password"},
         )
 
-    jwtToken = create_token(payload=payload)
+    role = getattr(user.global_role, "value", user.global_role)
+    jwtToken = create_token(user_id=str(user.id), email=user.email, role=role)
 
     return ApiResponse(
         statusCode=200,
@@ -131,7 +132,7 @@ async def login_user(db: AsyncSession, payload: UserLoginPayload) -> ApiResponse
                 "email": user.email,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-                "global_role": user.global_role,
+                "global_role": role,
                 "phone_number": user.phone_number,
             },
         },

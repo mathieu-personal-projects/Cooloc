@@ -1,0 +1,26 @@
+info:
+  name: get-a-user
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{API_URL}}/admin/user"
+  body:
+    type: json
+    data: |-
+      {
+        "data": {
+          "id": "ec7b29c9-0e20-4651-9c41-10912780a0d3"
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{JWT}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
