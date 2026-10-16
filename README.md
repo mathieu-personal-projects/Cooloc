@@ -1,3 +1,6 @@
+> [!WARNING]
+> This is the v2/2026 version. If you want to look at the legacy code I presented for my CDA, please look at the `legacy` branch
+
 # Cooloc
 
 Cooloc is a website made to simplify a flatshare. I made this website to obtain the **RNCP 37873** : "Concepteur Developpeur d'Applications".
