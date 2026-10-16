@@ -1,5 +1,14 @@
 .docker
 
+# Secrets
+.env*
+
+# Dependencies
+node_modules
+
+# OS files
+.DS_Store
+Thumbs.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
