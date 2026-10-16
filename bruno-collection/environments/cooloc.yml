@@ -3,4 +3,4 @@ variables:
   - name: API_URL
     value: http://localhost:8000/api/v2
   - name: JWT
-    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpbmctYXBwbGljYW50QGNvb2xvYy5jb20iLCJyb2xlIjoiQVBQTElDQU5UIiwiZXhwIjoxNzkyMTYzNjk3fQ.d47iJvK-cYEIgRId2ABqJGz-yWSrAM2yGF5ufhqvpBU
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RpbmctYXBwbGljYW50QGNvb2xvYy5jb20iLCJyb2xlIjoiQVBQTElDQU5UIiwiZXhwIjoxNzkyMTY1MTk2fQ.Xa9i1da-HvLGHJ6_POMEjPjN7XFX-fHqe7646fstE8w

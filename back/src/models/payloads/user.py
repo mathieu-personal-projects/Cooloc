@@ -9,3 +9,8 @@ class UserRegisterPayload(BaseModel):
     last_name: str
     phone_number: str
     global_role: UserGlobalRole = UserGlobalRole.APPLICANT
+
+class UserLoginPayload(BaseModel):
+    email: EmailStr
+    password: str
+    global_role: UserGlobalRole = UserGlobalRole.APPLICANT

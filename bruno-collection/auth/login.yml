@@ -1,0 +1,45 @@
+info:
+  name: login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{API_URL}}/auth/login"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: csrfToken
+      value: 52a5fe157277eb61ce9d30f2a21f05ed659a83e51a1c12bac9b114d4add3b4ea
+  body:
+    type: json
+    data: |-
+      {
+        "data": {
+          "email": "testing-applicant@cooloc.com",
+          "password": "ayYJky1W11MGG7tFWoz6vO51UB5sSgRVpMnW"
+        }
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const resBody = res.body;
+
+        if (resBody && resBody.data && resBody.data.jwtToken) {
+          const token = resBody.data.jwtToken;
+          bru.setEnvVar("JWT", token);
+          
+          console.log("JWT token savec");
+        } else {
+          console.log("cant find jwtToken");
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

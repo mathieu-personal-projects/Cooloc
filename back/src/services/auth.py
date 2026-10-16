@@ -1,7 +1,7 @@
 from typing import Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
-from src.models.payloads.user import UserRegisterPayload
+from src.models.payloads.user import UserRegisterPayload, UserLoginPayload
 from src.models.User import User
 from src.models.api.ApiResponse import ApiResponse
 from src.services.jwt import create_token
@@ -90,4 +90,49 @@ async def register_user(db: AsyncSession, payload: UserRegisterPayload) -> Dict[
             "jwtToken": jwtToken,
             "data": result            
         }
+    )
+
+async def login_user(db: AsyncSession, payload: UserLoginPayload) -> ApiResponse:
+    if not payload.csrfToken:
+        return ApiResponse(
+            statusCode=401,
+            message="Unauthorized",
+            data={"errorMessage": "missing or no csrfToken provided", "hasCsrf": False},
+        )
+
+    query = await db.execute(
+        text(
+            "SELECT id, email, password_hash, first_name, last_name, global_role, phone_number "
+            "FROM users WHERE email = :email LIMIT 1"
+        ),
+        params={"email": payload.email},
+    )
+    user = query.first()
+
+    if not user or not bcrypt.checkpw(
+        payload.password.encode("utf-8"),
+        user.password_hash.encode("utf-8"),
+    ):
+        return ApiResponse(
+            statusCode=401,
+            message="Unable to login",
+            data={"errorMessage": "invalid email or password"},
+        )
+
+    jwtToken = create_token(payload=payload)
+
+    return ApiResponse(
+        statusCode=200,
+        message="OK",
+        data={
+            "jwtToken": jwtToken,
+            "data": {
+                "id": user.id,
+                "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "global_role": user.global_role,
+                "phone_number": user.phone_number,
+            },
+        },
     )
